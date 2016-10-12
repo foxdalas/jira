@@ -29,7 +29,7 @@ module Scenarios
 
       git_style_release = SimpleConfig.jira.issue.tr('-', ' ').downcase.capitalize
 
-      prs.select! { |pr| (/^((#{SimpleConfig.jira.issue})|(#{git_style_release}))/.match pr['name']) && pr['status'] != 'DECLINED' }
+      prs.select! { |pr| (/^((#{SimpleConfig.jira.issue})|(#{git_style_release}))/.match pr['name']) && (pr['status'] != 'DECLINED' || pr['status'] != 'MERGED') }
 
       if prs.empty?
         puts 'No pull requests for this task!'
