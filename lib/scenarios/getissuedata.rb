@@ -63,8 +63,8 @@ module Scenarios
           next
         end
         # check for repo in modules_dict
-        next unless modules_dict.has_key?(repo_name)
-        prop_values["#{modules_dict[repo_name].upcase}_REVISION"] = pr['source']['branch']
+        next unless modules_dict.key?(repo_name)
+        prop_values["#{repo_name.upcase}_REVISION"] = pr['source']['branch']
         project_labels = labels.select { |label| label.start_with? "#{repo_name}_" }.map { |label| label.remove("#{repo_name}_") }
         prop_values["#{repo_name.upcase}_LABELS"] = project_labels.join(',') unless project_labels.empty?
       end
