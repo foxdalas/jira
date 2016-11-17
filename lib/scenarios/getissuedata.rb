@@ -54,7 +54,8 @@ module Scenarios
       puts 'Selected PRs:'
       puts prs.map { |pr| pr['name'] }
 
-      prop_values = { 'ENVIRONMENT' => ENV['ENVIRONMENT'] }
+      issue_data = { 'ENVIRONMENT' => ENV['ENVIRONMENT'] }
+      prop_values = {}
 
       prs.each do |pr|
         repo_name = pr['url'].split('/')[-3]
@@ -69,7 +70,9 @@ module Scenarios
         prop_values["#{repo_name.upcase}_LABELS"] = project_labels.join(',') unless project_labels.empty?
       end
 
-      JavaProperties.write prop_values, './.issue_data'
+      issue_data['REV_DATA'] = prop_values.to_json
+
+      JavaProperties.write issue_data, './.issue_data'
 
       exit 0
     end
