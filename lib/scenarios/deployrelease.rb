@@ -60,6 +60,7 @@ module Scenarios
 
       prs.each do |pr|
         repo_name = Git::Utils.url_to_ssh(pr['url']).to_s.split('/')[0..1].join('/') + '.git'
+        puts pr['url']
         puts repo_name
         unless pr['destination']['branch'].include? 'master'
           puts "WTF? Why is this Pull Request here? o_O (destination: #{pr['destination']['branch']}"
