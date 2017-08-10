@@ -58,6 +58,8 @@ module Scenarios
       puts prs.map { |pr| pr['name'] }
       pp prs
 
+      puts pr
+
       prs.each do |pr|
         repo_name = Git::Utils.url_to_ssh(pr['url']).to_s.split('/')[0..1].join('/') + '.git'
         puts pr['url']
