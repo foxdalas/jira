@@ -15,6 +15,7 @@ module Scenarios
       LOGGER.info "Build release #{opts[:release]}"
 
       options = { auth_type: :basic }.merge(opts.to_hash)
+      LOGGER.info options
       client  = JIRA::Client.new(options)
       release = client.Issue.find(opts[:release])
 
